@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { realData } from "../mock/realData";
-import { Github, ExternalLink, ChevronRight } from "lucide-react";
+import { Github, ExternalLink, ChevronRight, Youtube } from "lucide-react";
 
 const Projects = () => {
   const { projects } = realData;
@@ -56,21 +56,64 @@ const Projects = () => {
                 key={project.id}
                 className={`project-content ${activeProject === index ? 'active' : ''}`}
               >
-                <div className="project-image">
-                  <img src={project.image} alt={project.title} />
-                  <div className="project-image-overlay">
-                    <div className="project-links">
-                      <a href={project.github} className="project-link" target="_blank" rel="noopener noreferrer">
-                        <Github size={20} />
-                        <span>Code</span>
-                      </a>
-                      <a href={project.demo} className="project-link" target="_blank" rel="noopener noreferrer">
-                        <ExternalLink size={20} />
-                        <span>View</span>
-                      </a>
+                {project.embedVideo ? (
+                  <div className="project-video-stack">
+                    <div className="project-video-wrapper">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${project.embedVideo}`}
+                        title={project.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                    <div className="project-video-links">
+                      {project.github && (
+                        <a href={project.github} className="project-link" target="_blank" rel="noopener noreferrer">
+                          <Github size={18} />
+                          <span>Code</span>
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a href={project.demo} className="project-link" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink size={18} />
+                          <span>{project.demoLabel || "View"}</span>
+                        </a>
+                      )}
+                      {project.videos?.map((video, videoIndex) => (
+                        <a key={videoIndex} href={video.url} className="project-link" target="_blank" rel="noopener noreferrer">
+                          <Youtube size={18} />
+                          <span>{video.label}</span>
+                        </a>
+                      ))}
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="project-image">
+                    <img src={project.image} alt={project.title} />
+                    <div className="project-image-overlay">
+                      <div className="project-links">
+                        {project.github && (
+                          <a href={project.github} className="project-link" target="_blank" rel="noopener noreferrer">
+                            <Github size={20} />
+                            <span>Code</span>
+                          </a>
+                        )}
+                        {project.demo && (
+                          <a href={project.demo} className="project-link" target="_blank" rel="noopener noreferrer">
+                            <ExternalLink size={20} />
+                            <span>{project.demoLabel || "View"}</span>
+                          </a>
+                        )}
+                        {project.videos?.map((video, videoIndex) => (
+                          <a key={videoIndex} href={video.url} className="project-link" target="_blank" rel="noopener noreferrer">
+                            <Youtube size={20} />
+                            <span>{video.label}</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
                 
                 <div className="project-info">
                   <div className="project-header">

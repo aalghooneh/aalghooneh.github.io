@@ -133,9 +133,9 @@ const Hero = () => {
               
               <div className="mb-6 space-y-2">
                 <div className="flex items-center space-x-2">
-                  <span className="text-green-300 text-lg font-semibold">Ph.D. @ Mechatronics • University of Waterloo</span>
+                  <span className="text-green-300 text-lg font-semibold">AI Developer @ GM • Ph.D. Mechatronics, University of Waterloo</span>
                 </div>
-                <span className="text-green-300 text-lg font-semibold">LLMs • Multi-Sensor Fusion • Computer Vision</span>
+                <span className="text-green-300 text-lg font-semibold">LLMs • Multi-Sensor Fusion • Computer Vision • Embedded & Cloud</span>
               </div>
               
               <p className="text-gray-300 text-justify text-lg mb-8 max-w-2xl leading-relaxed">
